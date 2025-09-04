@@ -29,41 +29,7 @@ This repo provides a reference implementation — secure by default, production-
 
 ## Architecture (high-level)
 
-flowchart LR
-  subgraph Internet
-    Browser["User Browser\n(HTTPS)"]
-  end
-
-  subgraph AWS_Edge["CloudFront Edge Locations"]
-    CF["CloudFront Distribution\n(HTTPS, cache, compression,\ngeo & WAF optional)"]
-  end
-
-  subgraph AWS_Region["AWS Account / Region"]
-    ACM["ACM (us-east-1)\nTLS Certificate"]
-    S3["S3 Bucket (private)\nstatic-site-bucket"]
-    OAI["CloudFront OAI / OAC\n(Origin Access Identity)"]
-    Route53["Route53 Hosted Zone\n(optional)"]
-    IAM["IAM: CI Deployer Role/User\n(scoped policy)"]
-    CFLogs["CloudFront Logs -> S3 / CloudWatch"]
-    CloudTrail["CloudTrail\n(Logging)"]
-    BillingAlarm["CloudWatch Billing Alarm"]
-  end
-
-  subgraph CI["CI / GitHub Actions"]
-    GitHub["GitHub Actions\n(dispatch AWS CI role)"]
-  end
-
-  Browser -->|HTTPS request| CF
-  CF -->|Origin fetch (GetObject) via OAI| S3
-  CF -->|Uses TLS cert| ACM
-  Route53 -->|Alias / A record| CF
-  GitHub -->|aws s3 sync + invalidation| S3
-  GitHub -->|CreateInvalidation| CF
-  IAM -->|AssumeRole| GitHub
-  CF -->|Access logs| CFLogs
-  S3 -->|Object, versioning| CloudTrail
-  CloudTrail -->|Audit logs| BillingAlarm
-
+<img width="3202" height="1783" alt="image" src="https://github.com/user-attachments/assets/20e4c850-2b48-4398-95c1-4e597cca97d4" />
 
 **Notes:**
 
