@@ -463,11 +463,4 @@ MIT — feel free to reuse and adapt this for your organization.
 
 ---
 
-## Want me to also:
-
-* generate a ZIP with `terraform/` + `site/` and a one-click script to `terraform apply`?
-* output a CloudFormation template instead of Terraform?
-
-If yes, tell me which and I'll add it to the repo.
-
 *End of README.*
