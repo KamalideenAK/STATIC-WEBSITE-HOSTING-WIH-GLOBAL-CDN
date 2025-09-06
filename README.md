@@ -56,7 +56,7 @@ This repo provides a reference implementation — secure by default, production-
 1. S3 (private) stores the static site (index.html, assets, images). Bucket public access is blocked.
 2. CloudFront Distribution in front of the bucket provides HTTPS, caching, compression, and geo-optimized delivery.
 3. ACM (in `us-east-1`) issues the TLS certificate used by CloudFront.
-4. Route53 (optional) maps `www.example.com` to the CloudFront distribution via alias record.
+4. Route53 (optional) maps `viewcare.global.site` to the CloudFront distribution via alias record.
 5. GitHub Actions (or other CI) performs `aws s3 sync` and issues a CloudFront invalidation on deploy.
 
 ---
@@ -376,7 +376,12 @@ aws cloudfront create-invalidation --distribution-id $DIST_ID --paths "/*"
 
 ## Demo screenshots / short video (how to create)
 
-I cannot create screenshots from your environment here, but you can create a short demo locally or in CI:
+<img width="839" height="621" alt="image" src="https://github.com/user-attachments/assets/c87d1560-4eb8-435c-a9d6-fc03c08562ec" />
+
+<img width="1170" height="617" alt="image" src="https://github.com/user-attachments/assets/3ada130c-0742-4558-bc37-a441ea86f0a1" />
+
+<img width="872" height="792" alt="image" src="https://github.com/user-attachments/assets/b073f2c5-60f2-4964-ace1-e82f90e3f842" />
+
 
 ### Quick screenshot using `curl` + `webkit2png` or `puppeteer`
 
